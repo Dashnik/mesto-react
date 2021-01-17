@@ -1,35 +1,15 @@
-import logo from './images/header-logo.jpg';
 //import './App.css';
+import './Header.jsx';
+import Header from './Header.jsx';
+import Main from './Main.jsx';
+import Footer from './Footer.jsx';
 
 function App() {
   return (
     <div className="page">
-      <header className="header">
-        <img className="header__logo" src={logo} alt='логотип проекта Mesto'/>
-    </header>
-     <main className="content">
-        <section className="profile">
-            <div className="profile__photo_container">
-                <img src="#" className="profile__image" alt='Жак-Ив Кусто'/>
-                <img src="./images/EditPen.svg" className="penEdit" alt="PenEdit"/>
-             </div>
-                <div className="profile__info">
-                <div className="profile__info-table">
-                    <h1 className="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" className="profile__name-edit"></button>
-                </div>
-                <p className="profile__description"></p>
-            </div>
-            <div className="profile__rectangle">
-                <button type="button" className="profile__vector"> </button>
-            </div>
-        </section>
-        <section className="elements">
-        </section>
-    </main>
-    <footer className="footer">
-        <p className="footer__logo">© 2020 Mesto Russia</p>
-    </footer>
+    <Header/>
+    <Main/>
+    <Footer/>
     <div className="overlay"></div>
     <form className="popup popup_type_edit-user-profile" name="popup" noValidate>
         <div className="popup__container">        
