@@ -1,13 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './images/header-logo.jpg';
+//import './App.css';
 
 function App() {
   return (
     <div className="page">
       <header className="header">
-        <img className="header__logo" src="./images/header-logo.jpg" alt='логотип проекта Mesto'/>
+        <img className="header__logo" src={logo} alt='логотип проекта Mesto'/>
     </header>
-      <main className="content">
+     <main className="content">
         <section className="profile">
             <div className="profile__photo_container">
                 <img src="#" className="profile__image" alt='Жак-Ив Кусто'/>
@@ -15,7 +15,7 @@ function App() {
              </div>
                 <div className="profile__info">
                 <div className="profile__info-table">
-                    <h1 className="profile__name"></h1>
+                    <h1 className="profile__name">Жак-Ив Кусто</h1>
                     <button type="button" className="profile__name-edit"></button>
                 </div>
                 <p className="profile__description"></p>
@@ -28,10 +28,10 @@ function App() {
         </section>
     </main>
     <footer className="footer">
-        <p className="footer__logo">&COPY; 2020 Mesto Russia</p>
+        <p className="footer__logo">© 2020 Mesto Russia</p>
     </footer>
     <div className="overlay"></div>
-    <form className="popup popup_type_edit-user-profile" name="popup" novalidate>
+    <form className="popup popup_type_edit-user-profile" name="popup" noValidate>
         <div className="popup__container">        
             <button type="button" className="popup__close" aria-label="закрыть попап"></button>
             <h2 className="popup__title">Редактировать профиль</h2>
@@ -41,8 +41,8 @@ function App() {
             id="profile-name"
             name="popup__name" 
             className="popup__input popup__item_profile_name"
-            minlength="2"
-            maxlength="40" 
+            minLength="2"
+            maxLength="40" 
             placeholder="Имя" 
             required/>
             <span className="popup__input-error" id='profile-name-error'></span>
@@ -52,15 +52,15 @@ function App() {
             id="profile-job"
             name="popup__description" 
             className="popup__input popup__item_profile_job" 
-            minlength="2"
-             maxlength="200" 
+            minLength="2"
+            maxLength="200" 
              placeholder="Вид деятельности"
              required/>
             <span className="popup__input-error" id='profile-job-error'></span>
             <button type="submit" className="popup__submit popup__profile_submit"> Сохранить</button>
         </div>
     </form>
-    <form className="popup popup_type_new-cards" name="popup" novalidate>
+    <form className="popup popup_type_new-cards" name="popup" noValidate>
         <div className="popup__container popup_cards__container">
             <button type="button" className="popup__close" aria-label="закрыть попап"></button>
             <h2 className="popup__title popup_cards__title">Новое место</h2>
@@ -71,8 +71,8 @@ function App() {
             name="name" 
             className="popup__input popup__item_input_name"
             placeholder="Название" 
-            minlength="1" 
-            maxlength="30" 
+            minLength="1" 
+            maxLength="30" 
             required/>
             <span className="popup__input-error" id='place-name-error'></span>
             <input 

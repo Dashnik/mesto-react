@@ -1,0 +1,45 @@
+@import url(./__container/popup__container.css);
+@import url(./__close/popup__close.css);
+@import url(./__input/popup__input.css);
+@import url(./__submit/popup__submit.css);
+@import url(./__title/popup__title.css);
+@import url(./__caption/popup__caption.css);
+@import url(./__image/popup__image.css);
+@import url(./__input-error/popup__input-error.css);
+@import url(./__title/_removing_card/popup__title_removing_card.css); 
+@import url(./__removing/popup__removing.css);
+@import url(./__editing_photo_container/popup__editing_photo_container.css);
+
+.popup {
+  /** display: none; transition не работает с display:none */
+
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
+  z-index: 1001;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s, linear 0.5s;
+}
+
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  inset: 0px;
+  z-index: 1000;
+  background-color: #000a;
+  /* transition: visibility 0s, opacity 0.5s linear; */
+}
+
+.overlay.overlay_visible {
+  display: block;
+}
