@@ -3,26 +3,26 @@ import avatarLink from '../images/Jacques_Cousteau.jpg';
 import PopupWithForm from './PopupWithForm.jsx';
 import ImagePopup from './ImagePopup.jsx';
 
-function Main(){
+function Main(props){
 
-    const handleEditProfileClick = () => 
-    {
-        const popupEditUserInfoIcon = document.querySelector('.popup_type_edit-user-profile');
-        popupEditUserInfoIcon.classList.add('popup_opened');
-    }
+    // const handleEditProfileClick = () => 
+    // {
+    //     const popupEditUserInfoIcon = document.querySelector('.popup_type_edit-user-profile');
+    //     popupEditUserInfoIcon.classList.add('popup_opened');
+    // }
 
-    const handleEditAvatarClick = () => 
-    {
-        console.log('hi');
-     const test = document.querySelector('.popup_type_editing_photo_profile');
-     test.classList.add('popup_opened');
-    }
+    // const handleEditAvatarClick = () => 
+    // {
+    //     console.log('hi');
+    //  const test = document.querySelector('.popup_type_editing_photo_profile');
+    //  test.classList.add('popup_opened');
+    // }
 
-    const handleAddPlaceClick = () => 
-    {
-        const popupAddCardsIcon = document.querySelector('.popup_type_new-cards');
-        popupAddCardsIcon.classList.add('popup_opened');
-    }
+    // const handleAddPlaceClick = () => 
+    // {
+    //     const popupAddCardsIcon = document.querySelector('.popup_type_new-cards');
+    //     popupAddCardsIcon.classList.add('popup_opened');
+    // }
 
 
     
@@ -33,17 +33,17 @@ function Main(){
         <section className="profile">
             <div className="profile__photo_container">
                 <img src={avatarLink} className="profile__image" alt='Жак-Ив Кусто'/>
-                <button type="button"  className="profile__editingAvatar-icon" onClick={handleEditAvatarClick}></button>
+                <button type="button"  className="profile__editingAvatar-icon" onClick={props.onEditAvatar}></button>
              </div>
                 <div className="profile__info">
                 <div className="profile__info-table">
                     <h1 className="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" className="profile__edit-icon" onClick={handleEditProfileClick}></button>
+                    <button type="button" className="profile__edit-icon" onClick={props.onEditProfile}></button>
                 </div>
                 <p className="profile__description">Исследователь, ученый</p>
             </div>
             <div className="profile__rectangle">
-                <button type="button" className="profile__addingCard-icon" onClick={handleAddPlaceClick}> </button>
+                <button type="button" className="profile__addingCard-icon" onClick={props.onAddPlace}> </button>
             </div>
         </section>
         <section className="elements">
