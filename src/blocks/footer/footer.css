@@ -2,7 +2,8 @@
 
 .footer {
   margin-top: 48px;
-  margin-bottom: 36px;
+  /* margin-bottom: 36px; */
+  margin-bottom: 0;
   width: 99%;
   
   margin-left: auto;

@@ -1,4 +1,4 @@
-.profile__name-edit{
+.profile__edit-icon{
     width: 24px;
     height: 24px;
     padding-top: 20px;
@@ -10,7 +10,7 @@
 }
 
 
-.profile__name-edit:hover {
+.profile__edit-icon:hover {
     opacity: 0.6;
   
   }
@@ -18,7 +18,7 @@
   
 @media screen and (min-width: 768px) {
   
-    .profile__name-edit {
+    .profile__edit-icon {
       padding-left: 2%;
     }
   }

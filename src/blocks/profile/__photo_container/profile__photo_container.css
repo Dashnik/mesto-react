@@ -2,6 +2,6 @@
     position: relative;  
 }
 
-.profile__photo_container:hover .penEdit{
+.profile__photo_container:hover .profile__editingAvatar-icon{
     display: block;  
 }
