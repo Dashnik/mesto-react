@@ -1,5 +1,7 @@
 import React from 'react';
 import avatarLink from '../images/Jacques_Cousteau.jpg';
+import PopupWithForm from './PopupWithForm.jsx';
+import ImagePopup from './ImagePopup.jsx';
 
 function Main(){
 
@@ -48,8 +50,8 @@ function Main(){
         </section>
     </main>
        <div className="overlay"></div>
-
-       <form className="popup popup_type_edit-user-profile" name="popup" noValidate>
+       <PopupWithForm name="edit-user-profile" title="Редактировать профиль" placeholderName="Имя" placeholderDescription="Вид деятельности" submit="Сохранить"/>
+       {/* <form className="popup popup_type_edit-user-profile" name="popup" noValidate>
            <div className="popup__container">        
                <button type="button" className="popup__close" aria-label="закрыть попап"></button>
                <h2 className="popup__title">Редактировать профиль</h2>
@@ -77,8 +79,9 @@ function Main(){
                <span className="popup__input-error" id='profile-job-error'></span>
                <button type="submit" className="popup__submit popup__profile_submit"> Сохранить</button>
            </div>
-       </form>
-       <form className="popup popup_type_new-cards" name="popup" noValidate>
+       </form> */}
+         <PopupWithForm name="new-cards" title="Новое место"  placeholderName="Название" placeholderDescription="Ссылка на картинку" submit="Создать"/>
+       {/* <form className="popup popup_type_new-cards" name="popup" noValidate>
            <div className="popup__container popup_cards__container">
                <button type="button" className="popup__close" aria-label="закрыть попап"></button>
                <h2 className="popup__title popup_cards__title">Новое место</h2>
@@ -104,13 +107,15 @@ function Main(){
                <span className="popup__input-error" id='place-link-error'></span>
                <button type="submit" className="popup__submit popup_cards__submit popup__submit_inactive" disabled> Создать</button>
            </div>
-       </form>
-       <div className="popup popup_type_image" name="popupImage">
+       </form> */}
+       <ImagePopup/>
+       {/* <div className="popup popup_type_image" name="popupImage">
            <button type="button" className="popup__close" aria-label="закрыть попап"></button>
            <img className='popup__image' src="#" alt=""/>
            <p className="popup__caption"> </p>
-       </div>
-       <div className="popup popup_type_removing_card" name="popupRemovingCard">
+       </div> */}
+           <PopupWithForm name="removing_card" title="Вы уверены?"   submit="Да"/>
+       {/* <div className="popup popup_type_removing_card" name="popupRemovingCard">
            <button type="button" className="popup__close" aria-label="закрыть попап"></button>
            <div className="popup__removing">
                <h2 className="popup__title popup__title_removing_card">Вы уверены?</h2>
@@ -118,9 +123,9 @@ function Main(){
                    <button type="submit" className="popup__submit">Да</button>
                </form>
            </div>
-       </div>
-   
-       <div className="popup popup_type_editing_photo_profile" name="popupEditingPhotoProfile">
+       </div> */}
+        <PopupWithForm name="editing_photo_profile" title="Обновить аватар"  placeholderName="Ссылка на аватар" submit="Сохранить"/>
+       {/* <div className="popup popup_type_editing_photo_profile" name="popupEditingPhotoProfile">
            <button type="button" className="popup__close" aria-label="закрыть попап"></button>
            <div className="popup__editing_photo_container">
                <h2 className="popup__title">Обновить аватар</h2>
@@ -137,7 +142,8 @@ function Main(){
                    <button type="submit" className="popup__submit">Сохранить</button>
                </form>
            </div>
-       </div>
+       </div> */}
+
        </>
     )
 }
