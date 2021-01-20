@@ -2,30 +2,28 @@ import React from 'react';
 import avatarLink from '../images/Jacques_Cousteau.jpg';
 import PopupWithForm from './PopupWithForm.jsx';
 import ImagePopup from './ImagePopup.jsx';
+import { render } from '@testing-library/react';
 
 function Main(props){
 
-    // const handleEditProfileClick = () => 
-    // {
-    //     const popupEditUserInfoIcon = document.querySelector('.popup_type_edit-user-profile');
-    //     popupEditUserInfoIcon.classList.add('popup_opened');
-    // }
+    const[handleEditProfileClick, setProfileInfo] = React.useState(false);
+     const[handleEditAvatarClick, setAvatar] = React.useState(false);
+    // const[handleAddPlaceClick, setClick] = React.useState(false);
 
-    // const handleEditAvatarClick = () => 
-    // {
-    //     console.log('hi');
-    //  const test = document.querySelector('.popup_type_editing_photo_profile');
-    //  test.classList.add('popup_opened');
-    // }
+  
+     
+      function handleEditProfileClickTest(){
+        setProfileInfo(!handleEditProfileClick);
+      }
 
-    // const handleAddPlaceClick = () => 
-    // {
-    //     const popupAddCardsIcon = document.querySelector('.popup_type_new-cards');
-    //     popupAddCardsIcon.classList.add('popup_opened');
-    // }
+      function handleEditAvatarClickTest(){
+        setAvatar(!handleEditAvatarClick);
+      }
 
-
-    
+    //   function handleAddPlaceClick(){
+    //     setClick(true);
+    //   }
+   
 
     return(
         <>
@@ -33,12 +31,13 @@ function Main(props){
         <section className="profile">
             <div className="profile__photo_container">
                 <img src={avatarLink} className="profile__image" alt='Жак-Ив Кусто'/>
-                <button type="button"  className="profile__editingAvatar-icon" onClick={props.onEditAvatar}></button>
+                <button type="button"  className="profile__editingAvatar-icon" onClick={handleEditAvatarClickTest} ></button>
              </div>
                 <div className="profile__info">
                 <div className="profile__info-table">
                     <h1 className="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" className="profile__edit-icon" onClick={props.onEditProfile}></button>
+                    {/* <button type="button" className="profile__edit-icon" onClick={props.onEditProfile}></button> */}
+                    <button type="button" className="profile__edit-icon" onClick={handleEditProfileClickTest} ></button>
                 </div>
                 <p className="profile__description">Исследователь, ученый</p>
             </div>
@@ -50,37 +49,8 @@ function Main(props){
         </section>
     </main>
        <div className="overlay"></div>
-       <PopupWithForm name="edit-user-profile" title="Редактировать профиль" placeholderName="Имя" placeholderDescription="Вид деятельности" submit="Сохранить"/>
-       {/* <form className="popup popup_type_edit-user-profile" name="popup" noValidate>
-           <div className="popup__container">        
-               <button type="button" className="popup__close" aria-label="закрыть попап"></button>
-               <h2 className="popup__title">Редактировать профиль</h2>
-               <input 
-               type='text' 
-               value="" 
-               id="profile-name"
-               name="popup__name" 
-               className="popup__input popup__item_profile_name"
-               minLength="2"
-               maxLength="40" 
-               placeholder="Имя" 
-               required/>
-               <span className="popup__input-error" id='profile-name-error'></span>
-               <input 
-               type='text' 
-               value=""
-               id="profile-job"
-               name="popup__description" 
-               className="popup__input popup__item_profile_job" 
-               minLength="2"
-               maxLength="200" 
-                placeholder="Вид деятельности"
-                required/>
-               <span className="popup__input-error" id='profile-job-error'></span>
-               <button type="submit" className="popup__submit popup__profile_submit"> Сохранить</button>
-           </div>
-       </form> */}
-         <PopupWithForm name="new-cards" title="Новое место"  placeholderName="Название" placeholderDescription="Ссылка на картинку" submit="Создать"/>
+       <PopupWithForm isOpen={handleEditProfileClick ? 'popup_opened' : ''} name="edit-user-profile" title="Редактировать профиль" placeholderName="Имя" placeholderDescription="Вид деятельности"  submit="Сохранить"/>     
+         <PopupWithForm  name="new-cards" title="Новое место"  placeholderName="Название" placeholderDescription="Ссылка на картинку" submit="Создать"/> 
        {/* <form className="popup popup_type_new-cards" name="popup" noValidate>
            <div className="popup__container popup_cards__container">
                <button type="button" className="popup__close" aria-label="закрыть попап"></button>
@@ -124,7 +94,7 @@ function Main(props){
                </form>
            </div>
        </div> */}
-        <PopupWithForm name="editing_photo_profile" title="Обновить аватар"  placeholderName="Ссылка на аватар" submit="Сохранить"/>
+        <PopupWithForm isOpen={handleEditAvatarClick ? 'popup_opened' : ''}  name="editing_photo_profile" title="Обновить аватар"  placeholderName="Ссылка на аватар" submit="Сохранить"/>
        {/* <div className="popup popup_type_editing_photo_profile" name="popupEditingPhotoProfile">
            <button type="button" className="popup__close" aria-label="закрыть попап"></button>
            <div className="popup__editing_photo_container">
