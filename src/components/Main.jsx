@@ -1,5 +1,5 @@
 import React from 'react';
-import avatarLink from '../images/Jacques_Cousteau.jpg';
+//import avatarLink from '../images/Jacques_Cousteau.jpg';
 import PopupWithForm from './PopupWithForm.jsx';
 import ImagePopup from './ImagePopup.jsx';
 import { render } from '@testing-library/react';
@@ -12,15 +12,15 @@ function Main(props){
         <main className="content">
         <section className="profile">
             <div className="profile__photo_container">
-                <img src={avatarLink} className="profile__image" alt='Жак-Ив Кусто'/>
+                <img src={props.userAvatar} className="profile__image" alt='Аватар пользователя'/>
                 <button type="button"  className="profile__editingAvatar-icon" onClick={props.onEditAvatar}></button>
              </div>
                 <div className="profile__info">
                 <div className="profile__info-table">
-                    <h1 className="profile__name">Жак-Ив Кусто</h1>
+                    <h1 className="profile__name">{props.name}</h1>
                     <button type="button" className="profile__edit-icon" onClick={props.onEditProfile}></button>
                 </div>
-                <p className="profile__description">Исследователь, ученый</p>
+                <p className="profile__description">{props.description}</p>
             </div>
             <div className="profile__rectangle">
                 <button type="button" className="profile__addingCard-icon" onClick={props.onAddPlace}> </button>
