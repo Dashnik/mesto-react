@@ -6,38 +6,19 @@ import { render } from '@testing-library/react';
 
 function Main(props){
 
-    const[handleEditProfileClick, setProfileInfo] = React.useState(false);
-     const[handleEditAvatarClick, setAvatar] = React.useState(false);
-    // const[handleAddPlaceClick, setClick] = React.useState(false);
-
   
-     
-      function handleEditProfileClickTest(){
-        setProfileInfo(!handleEditProfileClick);
-      }
-
-      function handleEditAvatarClickTest(){
-        setAvatar(!handleEditAvatarClick);
-      }
-
-    //   function handleAddPlaceClick(){
-    //     setClick(true);
-    //   }
-   
-
     return(
         <>
         <main className="content">
         <section className="profile">
             <div className="profile__photo_container">
                 <img src={avatarLink} className="profile__image" alt='Жак-Ив Кусто'/>
-                <button type="button"  className="profile__editingAvatar-icon" onClick={handleEditAvatarClickTest} ></button>
+                <button type="button"  className="profile__editingAvatar-icon" onClick={props.onEditAvatar}></button>
              </div>
                 <div className="profile__info">
                 <div className="profile__info-table">
                     <h1 className="profile__name">Жак-Ив Кусто</h1>
-                    {/* <button type="button" className="profile__edit-icon" onClick={props.onEditProfile}></button> */}
-                    <button type="button" className="profile__edit-icon" onClick={handleEditProfileClickTest} ></button>
+                    <button type="button" className="profile__edit-icon" onClick={props.onEditProfile}></button>
                 </div>
                 <p className="profile__description">Исследователь, ученый</p>
             </div>
@@ -49,8 +30,6 @@ function Main(props){
         </section>
     </main>
        <div className="overlay"></div>
-       <PopupWithForm isOpen={handleEditProfileClick ? 'popup_opened' : ''} name="edit-user-profile" title="Редактировать профиль" placeholderName="Имя" placeholderDescription="Вид деятельности"  submit="Сохранить"/>     
-         <PopupWithForm  name="new-cards" title="Новое место"  placeholderName="Название" placeholderDescription="Ссылка на картинку" submit="Создать"/> 
        {/* <form className="popup popup_type_new-cards" name="popup" noValidate>
            <div className="popup__container popup_cards__container">
                <button type="button" className="popup__close" aria-label="закрыть попап"></button>
@@ -94,7 +73,7 @@ function Main(props){
                </form>
            </div>
        </div> */}
-        <PopupWithForm isOpen={handleEditAvatarClick ? 'popup_opened' : ''}  name="editing_photo_profile" title="Обновить аватар"  placeholderName="Ссылка на аватар" submit="Сохранить"/>
+   {/* <PopupWithForm isOpen={handleEditAvatarClick ? 'popup_opened' : ''}  name="editing_photo_profile" title="Обновить аватар"  placeholderName="Ссылка на аватар" submit="Сохранить"/> */}
        {/* <div className="popup popup_type_editing_photo_profile" name="popupEditingPhotoProfile">
            <button type="button" className="popup__close" aria-label="закрыть попап"></button>
            <div className="popup__editing_photo_container">

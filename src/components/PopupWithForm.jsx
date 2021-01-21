@@ -2,12 +2,10 @@ import React from 'react';
 
 
 function PopupWithForm(props){
- 
-
     return(
         <form className={`popup popup_type_${props.name} ${props.isOpen}`}  name="popup" noValidate>
         <div className="popup__container">        
-            <button type="button" className="popup__close" aria-label="закрыть попап" onClick={props.close}></button>
+            <button type="button" className="popup__close" aria-label="закрыть попап" ></button>
             <h2 className="popup__title">{props.title}</h2>
             <input 
             type='text' 
@@ -28,10 +26,10 @@ function PopupWithForm(props){
             className="popup__input popup__item_profile_job" 
             minLength="2"
             maxLength="200" 
-             placeholder={props.placeholderDescription}
+            placeholder={props.placeholderDescription}
              required/>
             <span className="popup__input-error" id='profile-job-error'></span>
-            <button type="submit" className="popup__submit popup__profile_submit">{props.submit}</button>
+            <button type="submit" className="popup__submit popup__profile_submit">{props.submitName}</button>
         </div>
     </form>
     )

@@ -4,39 +4,35 @@ import './Header.jsx';
 import Header from './Header.jsx';
 import Main from './Main.jsx';
 import Footer from './Footer.jsx';
+import PopupWithForm from './PopupWithForm.jsx';
 
 
-function App(props) {
-  const[isEditProfilePopupOpen, setProfilePopupOpen] = React.useState(false);
-  const[isAddPlacePopupOpen, setPlacePopupOpen] = React.useState(false);
-  const[isEditAvatarPopupOpen , setAvatarPopupOpen] = React.useState(false);
+function App() {
+ 
+  const[isEditProfilePopupOpen, setProfilePopup] = React.useState(false);
+  const[isAddPlacePopupOpen, setPlacePopup] = React.useState(false);
+  const[isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
 
+  const handleEditProfileClick = ()=>{
+    setProfilePopup(!isEditProfilePopupOpen);
+  }
+  
+  const handleAddPlaceClick = ()=>{
+    setPlacePopup(!isAddPlacePopupOpen);
+  }
 
-   function handleEditProfileClick(){
-    setProfilePopupOpen(!isEditProfilePopupOpen);
-   }
-
-   const handleAddPlaceClick = ()=>{
-     setPlacePopupOpen(!isAddPlacePopupOpen); 
-     isOpen();
-   }
-
-   function handleEditAvatarClick(){
-    setAvatarPopupOpen(!isEditAvatarPopupOpen);
-   }
-
-   const isOpen = () => {
-
-    handleAddPlaceClick ? 'hi' : 'bye'
-
-   }
+  const handleEditAvatarClick = ()=>{
+    setAvatarPopup(!isEditAvatarPopupOpen);
+  }
 
   return (
     <div className="page">
     <Header/>
-    <Main onAddPlace={handleAddPlaceClick} />
+    <Main onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} onAddPlace={handleAddPlaceClick} /> 
     <Footer/>
- 
+    <PopupWithForm isOpen={isEditProfilePopupOpen ? 'popup_opened':''} name="edit-user-profile" title="Редактировать профиль" placeholderName="Имя" placeholderDescription="Вид деятельности" submitName="Сохранить" />    
+    <PopupWithForm isOpen={isAddPlacePopupOpen ? 'popup_opened':''} name="new-cards" title="Новое место"  placeholderName="Название" placeholderDescription="Ссылка на картинку" submitName="Создать"/> 
+    <PopupWithForm isOpen={isEditAvatarPopupOpen ? 'popup_opened' : ''}  name="editing_photo_profile" title="Обновить аватар"  placeholderName="Ссылка на аватар" submitName="Сохранить"/>
     </div>
   );
 }
