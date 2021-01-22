@@ -1,11 +1,26 @@
 import React from 'react';
 //import avatarLink from '../images/Jacques_Cousteau.jpg';
-import PopupWithForm from './PopupWithForm.jsx';
-import ImagePopup from './ImagePopup.jsx';
+//import PopupWithForm from './PopupWithForm.jsx';
+//import ImagePopup from './ImagePopup.jsx';
 import { render } from '@testing-library/react';
+import Card from './Card';
+import Api from '../utils/Api';
 
 function Main(props){
+    const[cards, setCards] = React.useState([]);
 
+    React.useEffect(()=>{
+        Api.getInitialCards().then(data=>{
+        setCards( data.map(item =>({
+            cardID : item._id,
+            imageSrc: item.link,
+            imageAlt: item.name,
+            cardTitle: item.name,
+            cardLikes: item.likes.length,
+          })
+        ));
+      })
+    },[])
   
     return(
         <>
@@ -27,6 +42,7 @@ function Main(props){
             </div>
         </section>
         <section className="elements">
+        {cards.map(({cardID,...props})=> <Card key={cardID} {...props}/>)}
         </section>
     </main>
        <div className="overlay"></div>
@@ -57,13 +73,13 @@ function Main(props){
                <button type="submit" className="popup__submit popup_cards__submit popup__submit_inactive" disabled> Создать</button>
            </div>
        </form> */}
-       <ImagePopup/>
+       {/* <ImagePopup/> */}
        {/* <div className="popup popup_type_image" name="popupImage">
            <button type="button" className="popup__close" aria-label="закрыть попап"></button>
            <img className='popup__image' src="#" alt=""/>
            <p className="popup__caption"> </p>
        </div> */}
-           <PopupWithForm name="removing_card" title="Вы уверены?"   submit="Да"/>
+           {/* <PopupWithForm name="removing_card" title="Вы уверены?"   submit="Да"/> */}
        {/* <div className="popup popup_type_removing_card" name="popupRemovingCard">
            <button type="button" className="popup__close" aria-label="закрыть попап"></button>
            <div className="popup__removing">
