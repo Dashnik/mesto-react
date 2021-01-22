@@ -7,7 +7,7 @@ import Footer from './Footer.jsx';
 import PopupWithForm from './PopupWithForm.jsx';
 import Api from '../utils/Api';
 import Card from './Card';
-
+import ImagePopup from './ImagePopup.jsx';
 
 function App() {
  
@@ -18,33 +18,43 @@ function App() {
   const[userName, setUserName] = React.useState('');
   const[userDescription , setUserDescription] = React.useState('');
   const[userAvatar, setUserAvatar] = React.useState('');
-  const[cards, setCards] = React.useState([]);
+  // const[cards, setCards] = React.useState([]);
 
-React.useEffect(()=>{
+  const[selectedCard, setImageCard] = React.useState(false);
+
+
+  
+  /**Обработчик событий для открытия карточки */
+   
+  const handleCardClick = () =>
+  {
+    setImageCard(!selectedCard);
+  }
+
+  React.useEffect(()=>{
   Api.getProfileInfo().then(data => {
     setUserName(data.name);
     setUserDescription(data.about);
     setUserAvatar(data.avatar);
   })
-},[])
+  },[])
 
-React.useEffect(()=>{
-    Api.getInitialCards().then(data=>{
-    setCards( data.map(item =>({
-        cardID : item._id,
-        imageSrc: item.link,
-        imageAlt: item.name,
-        cardTitle: item.name,
-        cardLikes: item.likes.length,
-      })
-    ));
-  })
-},[])
+//   React.useEffect(()=>{
+//     Api.getInitialCards().then(data=>{
+//     setCards( data.map(item =>({
+//         cardID : item._id,
+//         imageSrc: item.link,
+//         imageAlt: item.name,
+//         cardTitle: item.name,
+//         cardLikes: item.likes.length,
+//       })
+//     ));
+//   })
+// },[])
 
 
   const handleEditProfileClick = ()=>{
     setProfilePopup(!isEditProfilePopupOpen);
-    console.log(cards);
   }
   
   const handleAddPlaceClick = ()=>{
@@ -55,26 +65,30 @@ React.useEffect(()=>{
     setAvatarPopup(!isEditAvatarPopupOpen);
   }
 
+
   const closeAllPopups = () =>{
     setProfilePopup(false);
     setPlacePopup(false); 
     setAvatarPopup(false);
+
+    setImageCard(false);
   }
 
-  const renderCards = ()=>{
-    cards.map(({cardID,...props})=> <Card key={cardID} {...props}/>)
-  }
+  // const renderCards = ()=>{
+  //   cards.map(({cardID,...props})=> <Card key={cardID} {...props}/>)
+  // }
 
   return (
     <div className="page">
     <Header/>
     <Main  onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} onAddPlace={handleAddPlaceClick} name={userName} description={userDescription} userAvatar={userAvatar}>
-      </Main> 
+   </Main> 
     <Footer/>
-    <PopupWithForm onClose ={closeAllPopups} isOpen={isEditProfilePopupOpen ? 'popup_opened':''} name="edit-user-profile" title="Редактировать профиль" placeholderName="Имя" placeholderDescription="Вид деятельности" submitName="Сохранить" />    
-    <PopupWithForm onClose ={closeAllPopups} isOpen={isAddPlacePopupOpen ? 'popup_opened':''} name="new-cards" title="Новое место"  placeholderName="Название" placeholderDescription="Ссылка на картинку" submitName="Создать"/> 
-    <PopupWithForm onClose ={closeAllPopups} isOpen={isEditAvatarPopupOpen ? 'popup_opened' : ''}  name="editing_photo_profile" title="Обновить аватар"  placeholderName="Ссылка на аватар" submitName="Сохранить"/>
-    {/* {cards.map(({cardID,...props})=> <Card {...props}/>)} */}
+    <PopupWithForm isSecondInputActive={true} onClose ={closeAllPopups} isOpen={isEditProfilePopupOpen ? 'popup_opened':''} name="edit-user-profile" title="Редактировать профиль" placeholderName="Имя" placeholderDescription="Вид деятельности" submitName="Сохранить" />    
+    <PopupWithForm isSecondInputActive={true} onClose ={closeAllPopups} isOpen={isAddPlacePopupOpen ? 'popup_opened':''} name="new-cards" title="Новое место"  placeholderName="Название" placeholderDescription="Ссылка на картинку" submitName="Создать"/> 
+    <PopupWithForm isSecondInputActive={false} onClose ={closeAllPopups} isOpen={isEditAvatarPopupOpen ? 'popup_opened' : ''}  name="editing_photo_profile" title="Обновить аватар"  placeholderName="Ссылка на аватар" submitName="Сохранить"/>
+    <PopupWithForm isSecondInputActive={false} onClose ={closeAllPopups}  name="removing_card" title="Вы уверены?"  submitName="Да"/>
+    <ImagePopup onClose={closeAllPopups} isOpen={selectedCard ? 'popup_opened':''}  card={selectedCard} />
     </div>
   );
 }

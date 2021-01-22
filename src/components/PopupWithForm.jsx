@@ -3,7 +3,7 @@ import React from 'react';
 
 function PopupWithForm(props){
     return(
-        <form className={`popup popup_type_${props.name} ${props.isOpen}`}  name="popup" noValidate>
+        <form className={`popup popup_type_${props.name} ${props.isOpen}`}  name={props.name} noValidate>
         <div className="popup__container">        
             <button type="button" className="popup__close" aria-label="закрыть попап"  onClick={props.onClose}></button>
             <h2 className="popup__title">{props.title}</h2>
@@ -18,6 +18,8 @@ function PopupWithForm(props){
             placeholder={props.placeholderName}
             required/>
             <span className="popup__input-error" id='profile-name-error'></span>
+            {props.isSecondInputActive ?  ( 
+            <>
             <input 
             type='text' 
             value=""
@@ -27,8 +29,10 @@ function PopupWithForm(props){
             minLength="2"
             maxLength="200" 
             placeholder={props.placeholderDescription}
-             required/>
+            required/> 
             <span className="popup__input-error" id='profile-job-error'></span>
+                </>
+             ) : '' }
             <button type="submit" className="popup__submit popup__profile_submit">{props.submitName}</button>
         </div>
     </form>
