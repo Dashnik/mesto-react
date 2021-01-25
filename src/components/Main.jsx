@@ -1,25 +1,8 @@
 import React from 'react';
 //import { render } from '@testing-library/react';
 import Card from './Card';
-import Api from '../utils/Api';
 
 function Main(props){
-    const[cards, setCards] = React.useState([]);
-
-    React.useEffect(()=>{
-        Api.getInitialCards().then(data=>{
-        setCards( data.map(item =>({
-            cardID : item._id,
-            imageSrc: item.link,
-            imageAlt: item.name,
-            cardTitle: item.name,
-            cardLikes: item.likes.length,
-          })
-        ));
-      })
-    },[])
-  
-    
 
     return(
         <>
@@ -41,7 +24,7 @@ function Main(props){
             </div>
         </section>
         <section className="elements">
-        {cards.map(({cardID,...props})=> <Card key={cardID} {...props} />)}
+        {props.allCards.map(({cardID,...props})=> <Card key={cardID} {...props} />)}
         </section>
     </main>
        <div className="overlay"></div>

@@ -4,7 +4,7 @@ import trashLogo from '../images/Trash.svg';
 function Card({cardID,imageSrc,imageAlt,cardTitle,cardLikes}){
 
     function handleClick() {
-        props.onCardClick(props.card);
+        props.onCardClick();
     }
 
     return(
