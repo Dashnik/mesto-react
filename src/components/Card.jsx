@@ -1,11 +1,12 @@
 import React from 'react';
 import trashLogo from '../images/Trash.svg';
 
-function Card({cardID,imageSrc,imageAlt,cardTitle,cardLikes}){
+function Card({cardID,imageSrc,imageAlt,cardTitle,cardLikes,onCardClick}){
 
     function handleClick() {
-        props.onCardClick();
-    }
+        onCardClick(imageSrc,cardTitle);
+     
+      } 
 
     return(
         <div className="card" id={cardID}> 

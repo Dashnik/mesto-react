@@ -1,8 +1,13 @@
 import React from 'react';
-//import { render } from '@testing-library/react';
 import Card from './Card';
 
 function Main(props){
+
+    function handleClick(imageSrc,cardTitle){
+     
+      props.handleCardClick(imageSrc,cardTitle);
+      
+    }
 
     return(
         <>
@@ -24,7 +29,8 @@ function Main(props){
             </div>
         </section>
         <section className="elements">
-        {props.allCards.map(({cardID,...props})=> <Card key={cardID} {...props} />)}
+        {props.allCards.map(({cardID,...props})=> <Card  onCardClick={ handleClick} key={cardID} {...props} />)}
+      
         </section>
     </main>
        <div className="overlay"></div>

@@ -19,16 +19,19 @@ function App() {
   const[userAvatar, setUserAvatar] = React.useState('');
   const[cards, setCards] = React.useState([]);
 
-  const[selectedCard, setImageCard] = React.useState(true);
+  const[selectedCard, setImageCard] = React.useState([false]);
 
 
-  
-  /**Обработчик событий для открытия карточки */
+    /**Обработчик событий для открытия карточки */
    
-  const handleCardClick = () =>
-  {
-    setImageCard(!selectedCard);
-  }
+    const handleCardClick = (imageSrc,cardTitle) =>  
+    {   
+      setImageCard({...selectedCard,
+        isOpen:true,
+        name:cardTitle,
+        imageSrc:imageSrc,
+      })
+    }
 
   React.useEffect(()=>{
   Api.getProfileInfo().then(data => {
@@ -78,7 +81,7 @@ function App() {
   return (
     <div className="page">
       <Header/>
-      <Main allCards={cards} onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} onAddPlace={handleAddPlaceClick} name={userName} description={userDescription} userAvatar={userAvatar}/>
+      <Main handleCardClick={handleCardClick} allCards={cards} onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} onAddPlace={handleAddPlaceClick} name={userName} description={userDescription} userAvatar={userAvatar}/>
       <Footer/>
       <PopupWithForm isSecondInputActive={true} onClose ={closeAllPopups} isOpen={isEditProfilePopupOpen ? 'popup_opened':''} name="edit-user-profile" title="Редактировать профиль" placeholderName="Имя" placeholderDescription="Вид деятельности" submitName="Сохранить" />    
       <PopupWithForm isSecondInputActive={true} onClose ={closeAllPopups} isOpen={isAddPlacePopupOpen ? 'popup_opened':''} name="new-cards" title="Новое место"  placeholderName="Название" placeholderDescription="Ссылка на картинку" submitName="Создать"/> 
