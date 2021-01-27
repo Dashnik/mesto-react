@@ -6,7 +6,7 @@
 @import url(./__caption/popup__caption.css);
 @import url(./__image/popup__image.css);
 @import url(./__input-error/popup__input-error.css);
-@import url(./__title/_removing_card/popup__title_removing_card.css); 
+@import url(./__title/_removing_card/popup__title_removing_card.css);
 @import url(./__removing/popup__removing.css);
 @import url(./__editing_photo_container/popup__editing_photo_container.css);
 
@@ -25,7 +25,6 @@
   opacity: 0;
   transition: visibility 0s, opacity 0.5s, linear 0.5s;
 }
-
 
 .overlay {
   display: none;

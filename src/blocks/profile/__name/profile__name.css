@@ -8,12 +8,11 @@
   margin-bottom: 0;
   text-align: center;
   color: #ffffff;
-  width: 93%;
+  /* width: 93%; */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-
 
 @media screen and (min-width: 900px) {
   .profile__name {
@@ -22,4 +21,3 @@
     text-align: left;
   }
 }
-
