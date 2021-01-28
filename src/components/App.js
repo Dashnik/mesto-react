@@ -11,8 +11,6 @@ function App() {
   const [isAddPlacePopupOpen, setPlacePopup] = React.useState(false);
   const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
 
- 
-
   const [selectedCard, setImageCard] = React.useState({ isOpen:false, name:'', imageSrc:'' });
 
   /**Обработчик событий для открытия карточки */
