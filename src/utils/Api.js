@@ -5,6 +5,7 @@ class Api {
     this.headers = config.headers;
   }
 
+    //test comments
   _getResponseData(value) {
     if (value.ok) {
       return value.json();

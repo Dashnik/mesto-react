@@ -1,7 +1,7 @@
 /**Код для 10 проектной работы */
 import React from 'react';
 import Card from './Card';
-import Api from '../utils/api';
+import Api from '../utils/api.js';
 
 function Main(props) {
   function handleClick(imageSrc, cardTitle) {
