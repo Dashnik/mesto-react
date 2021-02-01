@@ -6,16 +6,29 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
+import Api from '../utils/api.js';
+import {currentUserContext} from '../contexts/CurrentUserContext';
+ 
+
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setPlacePopup] = React.useState(false);
   const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
-
   const [selectedCard, setImageCard] = React.useState({ isOpen:false, name:'', imageSrc:'' });
 
-  /**Обработчик событий для открытия карточки */
-  console.log('default value from selectedCard: ' + selectedCard);
+  const [currentUser, setCurrentUser] = React.useState('');
 
+  React.useEffect(() => {
+    Api.getProfileInfo().then((data) => {
+      setCurrentUser(data);
+
+    })
+    .catch(error=>{
+      console.log(error);
+    });
+  }, []);
+
+  /**Обработчик событий для открытия карточки */
   const handleCardClick = (imageSrc, cardTitle) => {
    
     setImageCard({
@@ -24,7 +37,6 @@ function App() {
       name: cardTitle,
       imageSrc:imageSrc
     });
-    console.log(selectedCard);
   };
 
  
@@ -51,6 +63,7 @@ function App() {
 
   return (
     <div className="page">
+      <currentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         handleCardClick={handleCardClick}
@@ -59,6 +72,7 @@ function App() {
         onAddPlace={handleAddPlaceClick}
       />
       <Footer />
+      </currentUserContext.Provider>
       <PopupWithForm
         isSecondInputActive={true}
         onClose={closeAllPopups}

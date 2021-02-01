@@ -2,27 +2,32 @@
 import React from 'react';
 import Card from './Card';
 import Api from '../utils/api.js';
+import {currentUserContext} from '../contexts/CurrentUserContext';
 
 function Main(props) {
+
+  const currentUserT =  React.useContext(currentUserContext);
+
+
   function handleClick(imageSrc, cardTitle) {
     props.handleCardClick(imageSrc, cardTitle);
   }
 
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
+  // const [userName, setUserName] = React.useState('');
+  // const [userDescription, setUserDescription] = React.useState('');
+  // const [userAvatar, setUserAvatar] = React.useState('');
   const [cards, setCards] = React.useState([]);
 
-  React.useEffect(() => {
-    Api.getProfileInfo().then((data) => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    })
-    .catch(error=>{
-      console.log(error);
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   Api.getProfileInfo().then((data) => {
+  //     setUserName(data.name);
+  //     setUserDescription(data.about);
+  //     setUserAvatar(data.avatar);
+  //   })
+  //   .catch(error=>{
+  //     console.log(error);
+  //   });
+  // }, []);
 
   React.useEffect(() => {
     Api.getInitialCards().then((data) => {
@@ -47,7 +52,8 @@ function Main(props) {
         <section className="profile">
           <div className="profile__photo_container">
             <img
-              src={userAvatar}
+               //src={userAvatar}
+              src={currentUserT.avatar}
               className="profile__image"
               alt="Аватар пользователя"
             />
@@ -59,14 +65,16 @@ function Main(props) {
           </div>
           <div className="profile__info">
             <div className="profile__info-table">
-              <h1 className="profile__name">{userName}</h1>
+              {/* <h1 className="profile__name">{userName}</h1> */}
+              <h1 className="profile__name">{currentUserT.name}</h1>
               <button
                 type="button"
                 className="profile__edit-icon"
                 onClick={props.onEditProfile}
               />
             </div>
-            <p className="profile__description">{userDescription}</p>
+            {/* <p className="profile__description">{userDescription}</p> */}
+            <p className="profile__description">{currentUserT.about}</p>
           </div>
           <div className="profile__rectangle">
             <button
