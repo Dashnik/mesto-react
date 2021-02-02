@@ -33,7 +33,6 @@ function App() {
   React.useEffect(() => {
     Api.getInitialCards().then((data) => {
       
-  console.log(data);
       setCards(
         data.map((item) => ({
           cardID: item._id,
@@ -50,8 +49,6 @@ function App() {
         console.log(error);
       });
   }, []);
-
-  console.log(cards);
 
   /**Обработчик событий для открытия карточки */
   const handleCardClick = (imageSrc, cardTitle) => {

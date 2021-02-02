@@ -19,6 +19,7 @@
 @import url(./blocks/popup/_type/popup_type_new-cards.css);
 
 @import url(./blocks/card/__delete-button/_hidden/card__delete-button_hidden.css);
+@import url(./blocks/card/__like/_active/card__like_active.css);
 
 .card_id {
   display: none;
