@@ -67,20 +67,47 @@ class Api {
       });
     }
   
-    putLike(cardId) {
-      return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-        method: "PUT",
-        headers: this.headers,
-      })
-        .then((res) => {
-          return this._getResponseData(res);
-        })
-        .then((data) => {
-          return data;
-        });
-    }
+    // changeLikeCardStatus(cardId) {
+    //   return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+    //     method: "PUT",
+    //     headers: this.headers,
+    //   })
+    //     .then((res) => {
+    //       return this._getResponseData(res);
+    //     })
+    //     .then((data) => {
+    //       return data;
+    //     });
+    // }
   
-    deleteLike(cardId) {
+    // deleteLike(cardId) {
+    //   return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+    //     method: "DELETE",
+    //     headers: this.headers,
+    //   })
+    //     .then((res) => {
+    //       return this._getResponseData(res);
+    //     })
+    //     .then((data) => {
+    //       return data;
+    //     });
+    // }
+
+    changeLikeCardStatus( cardId, isLiked ) {
+
+      if (isLiked) {
+        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+          method: "PUT",
+          headers: this.headers,
+        })
+          .then((res) => {
+            return this._getResponseData(res);
+          })
+          .then((data) => {
+            return data;
+          });
+      }
+     else{
       return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
         method: "DELETE",
         headers: this.headers,
@@ -91,7 +118,12 @@ class Api {
         .then((data) => {
           return data;
         });
+     }
+  
     }
+
+
+
   }
   
   const apiPraktikum = new Api({

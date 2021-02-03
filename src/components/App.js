@@ -7,7 +7,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 import Api from '../utils/api.js';
-import {currentUserContext, cardsContext} from '../contexts/CurrentUserContext';
+import {currentUserContext} from '../contexts/CurrentUserContext';
  
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   const [selectedCard, setImageCard] = React.useState({ isOpen:false, name:'', imageSrc:'' });
 
   const [currentUser, setCurrentUser] = React.useState('');
-  const [cards, setCards] = React.useState([]);
+  //const [cards, setCards] = React.useState([]);
 
  
   React.useEffect(() => {
@@ -30,25 +30,27 @@ function App() {
     });
   }, []);
 
-  React.useEffect(() => {
-    Api.getInitialCards().then((data) => {
-      
-      setCards(
-        data.map((item) => ({
-          cardID: item._id,
-          imageSrc: item.link,
-          imageAlt: item.name,
-          cardTitle: item.name,
-          cardLikes: item.likes.length,
-          cardLikesArr: item.likes,
-          cardOwnerId:item.owner._id,
-        }))
-      );
-    })
-    .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   Api.getInitialCards().then((data) => {
+  //     console.log(data);
+  //     setCards(
+  //       data.map((item) => ({
+  //         cardID: item._id,
+  //         imageSrc: item.link,
+  //         imageAlt: item.name,
+  //         cardTitle: item.name,
+  //         cardLikes: item.likes.length,
+  //         cardLikesArr: item.likes,
+  //         cardOwnerId:item.owner._id,
+  //         cardIdentificator:item._id,
+  //       }))
+  //     );
+  //   })
+  //   .catch(error => {
+  //       console.log(error);
+  //     });
+  // }, []);
+
 
   /**Обработчик событий для открытия карточки */
   const handleCardClick = (imageSrc, cardTitle) => {
@@ -83,18 +85,19 @@ function App() {
     setImageCard({ name:'', link:'' , isOpen: false});
   };
 
+
   return (
     <div className="page">
       <currentUserContext.Provider value={currentUser} >
       <Header />
-      <cardsContext.Provider value={cards} >
+      {/* <cardsContext.Provider value={cards} > */}
       <Main
         handleCardClick={handleCardClick}
         onEditProfile={handleEditProfileClick}
         onEditAvatar={handleEditAvatarClick}
         onAddPlace={handleAddPlaceClick}
       />
-           </cardsContext.Provider>
+           {/* </cardsContext.Provider> */}
       <Footer />
       </currentUserContext.Provider>
       <PopupWithForm
