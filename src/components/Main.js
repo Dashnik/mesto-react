@@ -1,73 +1,66 @@
 /**Код для 10 проектной работы */
-import React from 'react';
-import Card from './Card';
-import {currentUserContext} from '../contexts/CurrentUserContext';
+import React from "react";
+import Card from "./Card";
+import { currentUserContext } from "../contexts/CurrentUserContext";
 
-import Api from '../utils/api.js';
+import Api from "../utils/api.js";
 
 function Main(props) {
-
+  const currentUser = React.useContext(currentUserContext);
   const [cards, setCards] = React.useState([]);
 
-  React.useEffect(() => {
-    Api.getInitialCards().then((data) => {
-    
-      setCards(
-        data.map((item) => ({
-          // cardID: item._id,
-          // imageLink: item.link,
-          // cardName: item.name,
-          // cardLikes: item.likes,
-          // cardOwnerId:item.owner._id,
-          _id: item._id,
-          link: item.link,
-          name: item.name,
-          likes: item.likes,
-          ownerId:item.owner._id,
-          //cardIdentificator:item._id,
-        }))
-      );
-    })
-    .catch(error => {
-        console.log(error);
-      });
-  }, []);
 
 
-  const currentUser =  React.useContext(currentUserContext);
 
 
-  function handleClick(imageSrc, cardTitle) {
-    props.handleCardClick(imageSrc, cardTitle);
-  } 
+  function handleClick(cardLink, cardName) {
+    props.handleCardClick(cardLink, cardName);
+  }
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     Api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+
       // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
       const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
-
-      console.log(cards);
+  
       // Обновляем стейт
       setCards(newCards);
-    });
-  } 
-
-  function handleCardDelete(card){
-    Api.deleteCard(card._id)
-    .then(()=>{
-     const newCards = cards.filter(r => (r._id === card._id ? '' : r))
-      setCards(newCards);
-    })
-    .catch(error=>{
-      console.log(error);
+     
     });
   }
 
+  function handleCardDelete(card) {
+    Api.deleteCard(card._id)
+      .then(() => {
+        const newCards = cards.filter((r) => (r._id === card._id ? "" : r));
+        setCards(newCards);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  React.useEffect(() => {
+    Api.getInitialCards()
+      .then((data) => {
+        setCards(
+          data.map((item) => ({
+            _id: item._id,
+            link: item.link,
+            name: item.name,
+            likes: item.likes,
+           owner:{_id:item.owner._id},
+          }))
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
@@ -108,15 +101,14 @@ function Main(props) {
         </section>
         {/* <cardsContext.Provider value={cards} > */}
         <section className="elements">
-          {/* {cards.map(({ cardID, ...props }) => (
-            <Card onCardClick={handleClick}  onCardLike={handleCardLike} key={cardID} {...props}  />
-          ))} */}
-            {cards.map((card) => (
-            <Card onCardClick={handleClick} 
-             onCardLike={handleCardLike}
-             onCardDelete={handleCardDelete}
+          {cards.map((card) => (
+            <Card
+              onCardClick={handleClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
               key={card._id}
-               card={card}  />
+              card={card}
+            />
           ))}
         </section>
         {/* </cardsContext.Provider> */}

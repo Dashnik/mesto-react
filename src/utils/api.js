@@ -127,9 +127,9 @@ class Api {
   }
   
   const apiPraktikum = new Api({
-    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17",
+    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-19",
     headers: {
-      authorization: "2be0f169-5c86-4181-b303-3b009feba466",
+      authorization: "62377db5-e458-4bf1-a2a6-d8b8f8bb8a60",
       "Content-Type": "application/json",
     },
   });
