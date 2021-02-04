@@ -19,6 +19,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = React.useState('');
  
+  //console.log(currentUser);
   React.useEffect(() => {
     Api.getProfileInfo().then((data) => {
       setCurrentUser(data);
@@ -72,8 +73,9 @@ function App() {
         onAddPlace={handleAddPlaceClick}
       />
       <Footer />
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
-      <PopupWithForm
+      <EditProfilePopup onClose={closeAllPopups}
+        isOpen={isEditProfilePopupOpen}/>
+      {/* <PopupWithForm
         isSecondInputActive={true}
         onClose={closeAllPopups}
         isOpen={isEditProfilePopupOpen ? 'popup_opened' : ''}
@@ -82,7 +84,7 @@ function App() {
         placeholderName="Имя"
         placeholderDescription="Вид деятельности"
         submitName="Сохранить"
-      />
+      /> */}
        </currentUserContext.Provider>
       <PopupWithForm
         isSecondInputActive={true}

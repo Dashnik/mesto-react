@@ -17,7 +17,7 @@ function PopupWithForm(props) {
         <h2 className="popup__title">{props.title}</h2>
         <input
           type="text"
-          value=""
+          value={props.firstInputValue}
           id="profile-name"
           name="popup__name"
           className="popup__input popup__item_profile_name"
@@ -31,7 +31,7 @@ function PopupWithForm(props) {
           <>
             <input
               type="text"
-              value=""
+              value={props.secondInputValue}
               id="profile-job"
               name="popup__description"
               className="popup__input popup__item_profile_job"
