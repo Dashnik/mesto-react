@@ -1,11 +1,13 @@
 import React from 'react';
 
 function PopupWithForm(props) {
+
   return (
     <form
       className={`popup popup_type_${props.name} ${props.isOpen}`}
       name={props.name}
       noValidate
+      onSubmit={props.handleSubmit}
     >
       <div className="popup__container">
         <button
@@ -25,6 +27,11 @@ function PopupWithForm(props) {
           maxLength="40"
           placeholder={props.placeholderName}
           required
+          onChange={(e)=>{
+           props.handleChange(e);       
+          }
+          }
+          // onChange={props.handleChange}
         />
         <span className="popup__input-error" id="profile-name-error" />
         {props.isSecondInputActive ? (
@@ -45,7 +52,7 @@ function PopupWithForm(props) {
         ) : (
           ''
         )}
-        <button type="submit" className="popup__submit popup__profile_submit">
+        <button type="submit" className="popup__submit popup__profile_submit" >
           {props.submitName}
         </button>
       </div>

@@ -53,6 +53,19 @@ function App() {
     setAvatarPopup(!isEditAvatarPopupOpen);
   };
 
+  const handleUpdateUser = () => {
+    //  console.log(currentUser);
+    Api.setNewProfile(currentUser)
+    .then(()=>{
+     
+       // setCurrentUser(currentUser);
+        closeAllPopups();
+    })
+    .catch(error=>{
+      console.log(error);
+    });
+  }
+
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setPlacePopup(false);
@@ -74,7 +87,8 @@ function App() {
       />
       <Footer />
       <EditProfilePopup onClose={closeAllPopups}
-        isOpen={isEditProfilePopupOpen}/>
+        isOpen={isEditProfilePopupOpen}
+        onUpdateUser={handleUpdateUser}/>
       {/* <PopupWithForm
         isSecondInputActive={true}
         onClose={closeAllPopups}
