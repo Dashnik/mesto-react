@@ -9,6 +9,8 @@ import ImagePopup from './ImagePopup';
 import Api from '../utils/api.js';
 import {currentUserContext} from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
+
  
 
 function App() {
@@ -18,8 +20,7 @@ function App() {
   const [selectedCard, setImageCard] = React.useState({ isOpen:false, name:'', imageSrc:'' });
 
   const [currentUser, setCurrentUser] = React.useState('');
- 
-  //console.log(currentUser);
+
   React.useEffect(() => {
     Api.getProfileInfo().then((data) => {
       setCurrentUser(data);
@@ -53,23 +54,33 @@ function App() {
     setAvatarPopup(!isEditAvatarPopupOpen);
   };
 
-  const handleUpdateUser = ({name, about}) => {
-    {currentUser.name = name,
-      currentUser.about = about
+  const handleUpdateUser = ({ name, about }) => {
+    {
+      currentUser.name = name,
+        currentUser.about = about
     }
-//   console.log(currentUser);
-// console.log(name);
-// console.log(about);
 
     Api.setNewProfile(currentUser)
-    .then(()=>{
-     
-       // setCurrentUser(currentUser);
+      .then(() => {
+
         closeAllPopups();
-    })
-    .catch(error=>{
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  const handleUpdateAvatar = (link) => {
+
+    Api.setUserAvatar(link).then((data)=>{
+      setCurrentUser(data);
+      closeAllPopups();
+    }
+    )
+    .catch(error => {
       console.log(error);
-    });
+    })
+
   }
 
   const closeAllPopups = () => {
@@ -95,16 +106,6 @@ function App() {
       <EditProfilePopup onClose={closeAllPopups}
         isOpen={isEditProfilePopupOpen}
         onUpdateUser={handleUpdateUser}/>
-      {/* <PopupWithForm
-        isSecondInputActive={true}
-        onClose={closeAllPopups}
-        isOpen={isEditProfilePopupOpen ? 'popup_opened' : ''}
-        name="edit-user-profile"
-        title="Редактировать профиль"
-        placeholderName="Имя"
-        placeholderDescription="Вид деятельности"
-        submitName="Сохранить"
-      /> */}
        </currentUserContext.Provider>
       <PopupWithForm
         isSecondInputActive={true}
@@ -116,15 +117,11 @@ function App() {
         placeholderDescription="Ссылка на картинку"
         submitName="Создать"
       />
-      <PopupWithForm
-        isSecondInputActive={false}
+      <EditAvatarPopup 
+        isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-        isOpen={isEditAvatarPopupOpen ? 'popup_opened' : ''}
-        name="editing_photo_profile"
-        title="Обновить аватар"
-        placeholderName="Ссылка на аватар"
-        submitName="Сохранить"
-      />
+        onUpdateAvatar={handleUpdateAvatar}
+        />
       <PopupWithForm
         isSecondInputActive={false}
         onClose={closeAllPopups}

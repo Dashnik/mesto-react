@@ -1,8 +1,18 @@
-import React from 'react';
+//import React from 'react';
+import React, { useRef } from "react";
 
 function PopupWithForm(props) {
 
-  const [name, setName] = React.useState('');
+  //const [name, setName] = React.useState('');
+  
+ // const inputField = React.useRef(null)
+
+  // function onClose(){
+   
+  //   const value = inputField.current.value;
+  //   console.log(value);
+
+  // }
 
 
   return (
@@ -18,6 +28,7 @@ function PopupWithForm(props) {
           className="popup__close"
           aria-label="закрыть попап"
           onClick={props.onClose}
+          // onClick={onClose}
         />
         <h2 className="popup__title">{props.title}</h2>
         <input
@@ -27,7 +38,7 @@ function PopupWithForm(props) {
            name="popup__name"
           className="popup__input popup__item_profile_name"
           minLength="2"
-          maxLength="40"
+          //maxLength="40"
           placeholder={props.placeholderName}
           required
           // onChange={e=>{
@@ -35,6 +46,7 @@ function PopupWithForm(props) {
           // }
           // }
           onChange={props.handleChange}
+          ref={props.inputField}
         />
         <span className="popup__input-error" id="profile-name-error" />
         {props.isSecondInputActive ? (
