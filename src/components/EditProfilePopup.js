@@ -25,8 +25,6 @@ function EditProfilePopup(props) {
       name,
       about: description,
     });
-    // console.log(name);
-    // console.log(description);
   }
 
   const handleChange = (e) =>{

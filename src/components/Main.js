@@ -1,66 +1,15 @@
-/**Код для 10 проектной работы */
 import React from "react";
 import Card from "./Card";
-import { currentUserContext } from "../contexts/CurrentUserContext";
-
-import Api from "../utils/api.js";
+import { currentUserContext, cardsContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
   const currentUser = React.useContext(currentUserContext);
-  const [cards, setCards] = React.useState([]);
-
-
-
+  const cardsContextTest = React.useContext(cardsContext);
 
 
   function handleClick(cardLink, cardName) {
     props.handleCardClick(cardLink, cardName);
-  }
-
-  function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
-    // Отправляем запрос в API и получаем обновлённые данные карточки
-    Api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-
-      // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
-      const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
-  
-      // Обновляем стейт
-      setCards(newCards);
-     
-    });
-  }
-
-  function handleCardDelete(card) {
-    Api.deleteCard(card._id)
-      .then(() => {
-        const newCards = cards.filter((r) => (r._id === card._id ? "" : r));
-        setCards(newCards);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  React.useEffect(() => {
-    Api.getInitialCards()
-      .then((data) => {
-        setCards(
-          data.map((item) => ({
-            _id: item._id,
-            link: item.link,
-            name: item.name,
-            likes: item.likes,
-           owner:{_id:item.owner._id},
-          }))
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  } 
 
   return (
     <>
@@ -99,19 +48,17 @@ function Main(props) {
             </button>
           </div>
         </section>
-        {/* <cardsContext.Provider value={cards} > */}
         <section className="elements">
-          {cards.map((card) => (
+              {cardsContextTest.map((card) => (
             <Card
               onCardClick={handleClick}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardLike={props.handleCardLike}
+              onCardDelete={props.handleCardDelete}
               key={card._id}
               card={card}
             />
           ))}
         </section>
-        {/* </cardsContext.Provider> */}
       </main>
       <div className="overlay" />
     </>

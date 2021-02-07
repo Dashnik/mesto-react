@@ -28,7 +28,6 @@ function PopupWithForm(props) {
           className="popup__close"
           aria-label="закрыть попап"
           onClick={props.onClose}
-          // onClick={onClose}
         />
         <h2 className="popup__title">{props.title}</h2>
         <input
@@ -41,10 +40,6 @@ function PopupWithForm(props) {
           //maxLength="40"
           placeholder={props.placeholderName}
           required
-          // onChange={e=>{
-          //   setName(e.target.value);   
-          // }
-          // }
           onChange={props.handleChange}
           ref={props.inputField}
         />
