@@ -9,7 +9,7 @@ function Main(props) {
 
   function handleClick(cardLink, cardName) {
     props.handleCardClick(cardLink, cardName);
-  } 
+  }
 
   return (
     <>
@@ -49,7 +49,7 @@ function Main(props) {
           </div>
         </section>
         <section className="elements">
-              {cardsContextTest.map((card) => (
+          {cardsContextTest.map((card) => (
             <Card
               onCardClick={handleClick}
               onCardLike={props.handleCardLike}

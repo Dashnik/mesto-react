@@ -1,19 +1,7 @@
-//import React from 'react';
-import React, { useRef } from "react";
+
+import React from "react";
 
 function PopupWithForm(props) {
-
-  //const [name, setName] = React.useState('');
-  
- // const inputField = React.useRef(null)
-
-  // function onClose(){
-   
-  //   const value = inputField.current.value;
-  //   console.log(value);
-
-  // }
-
 
   return (
     <form
@@ -34,7 +22,7 @@ function PopupWithForm(props) {
           type="text"
           value={props.firstInputValue}
           id="profile-name"
-           name="popup__name"
+          name="popup__name"
           className="popup__input popup__item_profile_name"
           minLength="2"
           //maxLength="40"
@@ -61,8 +49,8 @@ function PopupWithForm(props) {
             <span className="popup__input-error" id="profile-job-error" />
           </>
         ) : (
-          ''
-        )}
+            ''
+          )}
         <button type="submit" className="popup__submit popup__profile_submit" >
           {props.submitName}
         </button>

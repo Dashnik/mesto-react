@@ -1,4 +1,3 @@
-/** Код для десятой проектной работы */
 import React from 'react';
 import Header from './Header';
 import Main from './Main';
@@ -7,20 +6,19 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 import Api from '../utils/api.js';
-import {currentUserContext, cardsContext} from '../contexts/CurrentUserContext';
+import { currentUserContext, cardsContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
- 
+
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setPlacePopup] = React.useState(false);
   const [isEditAvatarPopupOpen, setAvatarPopup] = React.useState(false);
-  const [selectedCard, setImageCard] = React.useState({ isOpen:false, name:'', imageSrc:'' });
+  const [selectedCard, setImageCard] = React.useState({ isOpen: false, name: '', imageSrc: '' });
 
   const [currentUser, setCurrentUser] = React.useState('');
-
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
@@ -46,19 +44,19 @@ function App() {
       setCurrentUser(data);
 
     })
-    .catch(error=>{
-      console.log(error);
-    });
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
 
-  /**Обработчик событий для открытия карточки */
+  /**Обработчики событий */
   const handleCardClick = (imageSrc, cardTitle) => {
-   
+
     setImageCard({
       ...selectedCard,
       isOpen: true,
       name: cardTitle,
-      imageSrc:imageSrc
+      imageSrc: imageSrc
     });
   };
 
@@ -119,25 +117,25 @@ function App() {
 
   const handleUpdateAvatar = (link) => {
 
-    Api.setUserAvatar(link).then((data)=>{
+    Api.setUserAvatar(link).then((data) => {
       setCurrentUser(data);
       closeAllPopups();
     }
     )
-    .catch(error => {
-      console.log(error);
-    })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   const handleAddPlaceSubmit = (newCard) => {
-    
-    Api.postCardOnTheServer(newCard)   
-    .then(newElement => {    
-      setCards([...cards,newElement])
-    })
-    .catch(error => {
-      console.log(error);
-    })
+
+    Api.postCardOnTheServer(newCard)
+      .then(newElement => {
+        setCards([...cards, newElement])
+      })
+      .catch(error => {
+        console.log(error);
+      })
     closeAllPopups();
     console.log(cards);
   }
@@ -147,40 +145,39 @@ function App() {
     setPlacePopup(false);
     setAvatarPopup(false);
 
-    setImageCard({ name:'', link:'' , isOpen: false});
+    setImageCard({ name: '', link: '', isOpen: false });
   };
 
 
   return (
     <div className="page">
       <currentUserContext.Provider value={currentUser} >
-      <Header />
-      <cardsContext.Provider value={cards} >
-      <Main
-        handleCardClick={handleCardClick}
-        onEditProfile={handleEditProfileClick}
-        onEditAvatar={handleEditAvatarClick}
-        onAddPlace={handleAddPlaceClick}
-        handleCardLike={handleCardLike}
-        handleCardDelete={handleCardDelete}
-        allCards={cards}
-      />
-      </cardsContext.Provider>
-      <Footer />
-      <EditProfilePopup onClose={closeAllPopups}
-        isOpen={isEditProfilePopupOpen}
-        onUpdateUser={handleUpdateUser}/>
-       </currentUserContext.Provider>
-       <AddPlacePopup
+        <Header />
+        <cardsContext.Provider value={cards} >
+          <Main
+            handleCardClick={handleCardClick}
+            onEditProfile={handleEditProfileClick}
+            onEditAvatar={handleEditAvatarClick}
+            onAddPlace={handleAddPlaceClick}
+            handleCardLike={handleCardLike}
+            handleCardDelete={handleCardDelete}
+          />
+        </cardsContext.Provider>
+        <Footer />
+        <EditProfilePopup onClose={closeAllPopups}
+          isOpen={isEditProfilePopupOpen}
+          onUpdateUser={handleUpdateUser} />
+      </currentUserContext.Provider>
+      <AddPlacePopup
         onClose={closeAllPopups}
         isOpen={isAddPlacePopupOpen}
         onCreateCard={handleAddPlaceSubmit}
-       />
-      <EditAvatarPopup 
+      />
+      <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         onUpdateAvatar={handleUpdateAvatar}
-        />
+      />
       <PopupWithForm
         isSecondInputActive={false}
         onClose={closeAllPopups}

@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-//import { currentUserContext } from "../contexts/CurrentUserContext";
+import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup(props) {
@@ -10,9 +9,9 @@ function EditAvatarPopup(props) {
         e.preventDefault();
 
         const value = inputField.current.value;
-      
-         props.onUpdateAvatar({
-           avatar:value /* Значение инпута, полученное с помощью рефа */,
+
+        props.onUpdateAvatar({
+            avatar: value /* Значение инпута, полученное с помощью рефа */,
         });
     }
 
