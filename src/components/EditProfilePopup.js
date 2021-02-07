@@ -6,34 +6,36 @@ function EditProfilePopup(props) {
     // Подписка на контекст
   const currentUser = React.useContext(currentUserContext);
 
-  const [name, setName] = React.useState(value);
-  const [description, setDescription] = React.useState('');
-  
-
-
+   const [name, setName] = React.useState('');
+   const [description, setDescription] = React.useState('');
 
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.
-  // React.useEffect(() => {
-  //   setName(currentUser.name);
-  //   setDescription(currentUser.about);
-  // }, [currentUser]);
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser]);
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
 
-    // Передаём значения управляемых компонентов во внешний обработчик
+   // Передаём значения управляемых компонентов во внешний обработчик
     props.onUpdateUser({
       name,
       about: description,
     });
+    // console.log(name);
+    // console.log(description);
   }
 
   const handleChange = (e) =>{
-     setName(e.target.value);
-    
-    console.log(e.target.value);
+  
+    e.target.name === 'popup__name' ? setName(e.target.value) : ''
+
+    e.target.name === 'popup__description' ? setDescription(e.target.value) : ''
+   
+    // setName(e.target.value) original row
   }
 
   return (
@@ -43,13 +45,13 @@ function EditProfilePopup(props) {
       isOpen={props.isOpen ? "popup_opened" : ""}
       name="edit-user-profile"
       title="Редактировать профиль"
-      firstInputValue={currentUser.name}
-      secondInputValue={currentUser.about}
+      firstInputValue={name}
+      secondInputValue={description}
       placeholderName="Имя"
       placeholderDescription="Вид деятельности"
       submitName="Сохранить"
       handleSubmit={handleSubmit}
-       handleChange={handleChange}
+      handleChange={handleChange}
     />
   );
 }

@@ -2,6 +2,9 @@ import React from 'react';
 
 function PopupWithForm(props) {
 
+  const [name, setName] = React.useState('');
+
+
   return (
     <form
       className={`popup popup_type_${props.name} ${props.isOpen}`}
@@ -21,17 +24,17 @@ function PopupWithForm(props) {
           type="text"
           value={props.firstInputValue}
           id="profile-name"
-          name="popup__name"
+           name="popup__name"
           className="popup__input popup__item_profile_name"
           minLength="2"
           maxLength="40"
           placeholder={props.placeholderName}
           required
-          onChange={(e)=>{
-           props.handleChange(e);       
-          }
-          }
-          // onChange={props.handleChange}
+          // onChange={e=>{
+          //   setName(e.target.value);   
+          // }
+          // }
+          onChange={props.handleChange}
         />
         <span className="popup__input-error" id="profile-name-error" />
         {props.isSecondInputActive ? (
@@ -46,6 +49,7 @@ function PopupWithForm(props) {
               maxLength="200"
               placeholder={props.placeholderDescription}
               required
+              onChange={props.handleChange}
             />
             <span className="popup__input-error" id="profile-job-error" />
           </>

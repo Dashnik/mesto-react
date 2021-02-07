@@ -53,8 +53,14 @@ function App() {
     setAvatarPopup(!isEditAvatarPopupOpen);
   };
 
-  const handleUpdateUser = () => {
-    //  console.log(currentUser);
+  const handleUpdateUser = ({name, about}) => {
+    {currentUser.name = name,
+      currentUser.about = about
+    }
+//   console.log(currentUser);
+// console.log(name);
+// console.log(about);
+
     Api.setNewProfile(currentUser)
     .then(()=>{
      
