@@ -1,14 +1,16 @@
-# Mesto
+# Mesto-React
 
-Вы можете ознакомиться с проектом по следующей [ссылке}:
+Вы можете ознакомиться с проектом место на реакте по следующей [ссылке]:
 
-
-* [ссылке] - макет по четвертой проектной работе.
-* [4] - макет по четвертой проектной работе.
 
 ### О странице
 
-Mesto.React  это переработанная  страница места(https://dashnik.github.io/mesto/index.html) только с использование библиотеки реакт. В основу работы были положены хуки useState, useEffect and useRef. 
+Mesto.React  это переработанная страница [места] только с использование библиотеки реакт. В основу работы были положены хуки useState, useEffect and useRef. Проект был разбит на две работы.
+
+### В рамках первой проектной работы по реакту были выполнены следующие моменты:
+
+* Страница была сверстана с использованием jsx+html.
+*  Проект был разбит на компоненты(App,Card,Footer,Header,ImagePopup,Main,PopupWithForm,Api и константы)
 
 ### В рамках второй проектной работы по реакту были выполнены следующие моменты:
 
@@ -17,10 +19,6 @@ Mesto.React  это переработанная  страница места(ht
 * Реализованы лайки для карточек, а также их удаление удаление. 
 * Дополнительно созданы EditProfilePopup, EditAvatarPopup и AddPlacePopup компоненты.
 
-### В рамках первой проектной работы по реакту были выполнены следующие моменты:
-
-* Страница была сверстана с использованием jsx+html.
-*  Проект был разбит на компоненты(App,Card,Footer,Header,ImagePopup,Main,PopupWithForm,Api и константы)
 
 Страница является адаптивной и готова к работе на разрешениях от 320до 1280px по ширине.
 
@@ -41,5 +39,6 @@ HTML, CSS(Flex,Grid,BEM), Javascript, react
 * убрать лишний div при открытии попапов.
 
 [ссылке]: <https://dashnik.github.io/mesto-react/> 
-
-[4]: <https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4> 
+[места]: <https://dashnik.github.io/mesto/index.html> 
+[Unsplash]: <https://unsplash.com/>
+[Inter]:<https://fonts.google.com/specimen/Inter?preview.text_type=custom>
