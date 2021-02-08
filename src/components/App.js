@@ -6,7 +6,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 import Api from '../utils/api.js';
-import { currentUserContext, cardsContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext, CardsContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
@@ -72,7 +72,9 @@ function App() {
 
       // Обновляем стейт
       setCards(newCards);
-
+    })
+    .catch(error => {
+      console.log(error);
     });
   }
 
@@ -99,15 +101,28 @@ function App() {
     setAvatarPopup(!isEditAvatarPopupOpen);
   };
 
+  // const handleUpdateUser = ({ name, about }) => {
+  //   {
+  //     currentUser.name = name,
+  //       currentUser.about = about
+  //   }
+
+  //   Api.setNewProfile(currentUser)
+  //     .then(() => {
+
+  //       closeAllPopups();
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }
+
   const handleUpdateUser = ({ name, about }) => {
-    {
-      currentUser.name = name,
-        currentUser.about = about
-    }
+   
 
-    Api.setNewProfile(currentUser)
-      .then(() => {
-
+    Api.setNewProfile({ name, about })
+      .then((userData) => {
+        setCurrentUser(userData)
         closeAllPopups();
       })
       .catch(error => {
@@ -131,13 +146,12 @@ function App() {
 
     Api.postCardOnTheServer(newCard)
       .then(newElement => {
-        setCards([...cards, newElement])
+        setCards([newElement, ...cards ])
       })
       .catch(error => {
         console.log(error);
       })
     closeAllPopups();
-    console.log(cards);
   }
 
   const closeAllPopups = () => {
@@ -151,9 +165,9 @@ function App() {
 
   return (
     <div className="page">
-      <currentUserContext.Provider value={currentUser} >
+      <CurrentUserContext.Provider value={currentUser} >
         <Header />
-        <cardsContext.Provider value={cards} >
+        <CardsContext.Provider value={cards} >
           <Main
             handleCardClick={handleCardClick}
             onEditProfile={handleEditProfileClick}
@@ -162,12 +176,12 @@ function App() {
             handleCardLike={handleCardLike}
             handleCardDelete={handleCardDelete}
           />
-        </cardsContext.Provider>
+        </CardsContext.Provider>
         <Footer />
         <EditProfilePopup onClose={closeAllPopups}
           isOpen={isEditProfilePopupOpen}
           onUpdateUser={handleUpdateUser} />
-      </currentUserContext.Provider>
+      </CurrentUserContext.Provider>
       <AddPlacePopup
         onClose={closeAllPopups}
         isOpen={isAddPlacePopupOpen}

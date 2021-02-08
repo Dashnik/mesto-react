@@ -1,10 +1,10 @@
 import React from "react";
-import { currentUserContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
 
 function EditProfilePopup(props) {
   // Подписка на контекст
-  const currentUser = React.useContext(currentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
@@ -12,8 +12,8 @@ function EditProfilePopup(props) {
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.
   React.useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
+    setName(currentUser.name || '');
+    setDescription(currentUser.about || '');
   }, [currentUser]);
 
   function handleSubmit(e) {
@@ -33,24 +33,43 @@ function EditProfilePopup(props) {
 
     e.target.name === 'popup__description' ? setDescription(e.target.value) : ''
 
-    // setName(e.target.value) original row
   }
 
   return (
     <PopupWithForm
-      isSecondInputActive={true}
+     // isSecondInputActive={true}
       onClose={props.onClose}
       isOpen={props.isOpen ? "popup_opened" : ""}
       name="edit-user-profile"
       title="Редактировать профиль"
-      firstInputValue={name}
-      secondInputValue={description}
-      placeholderName="Имя"
-      placeholderDescription="Вид деятельности"
       submitName="Сохранить"
       handleSubmit={handleSubmit}
-      handleChange={handleChange}
-    />
+    >
+      <input
+        type="text"
+        value={name}
+        id="profile-name"
+        name="popup__name"
+        className="popup__input popup__item_profile_name"
+        minLength="2"
+        maxLength="40"
+        placeholder={'Имя'}
+        required
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        value={description}
+        id="profile-job"
+        name="popup__description"
+        className="popup__input popup__item_profile_job"
+        minLength="2"
+        maxLength="40"
+        placeholder={'Вид деятельности'}
+        required
+        onChange={handleChange}
+      />
+    </PopupWithForm>
   );
 }
 

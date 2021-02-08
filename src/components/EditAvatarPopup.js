@@ -21,11 +21,21 @@ function EditAvatarPopup(props) {
             isOpen={props.isOpen ? "popup_opened" : ""}
             name="editing_photo_profile"
             title="Обновить аватар"
-            placeholderName="Ссылка на аватар"
             submitName="Сохранить"
             handleSubmit={handleSubmit}
             inputField={inputField}
-        />
+        >
+        <input
+        type="text"
+        id="profile-name"
+        name="popup__name"
+        className="popup__input popup__item_profile_name"
+        minLength="2"
+        placeholder="Ссылка на аватар"
+        required
+        ref={inputField}
+      />   
+      </PopupWithForm>
     );
 }
 

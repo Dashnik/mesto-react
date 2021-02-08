@@ -1,6 +1,6 @@
 import React from "react";
 import trashLogo from "../images/Trash.svg";
-import { currentUserContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card({
   card,
@@ -8,7 +8,7 @@ function Card({
   onCardLike,
   onCardDelete,
 }) {
-  const currentUser = React.useContext(currentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
   // Определяем, являемся ли мы владельцем текущей карточки
   // const isOwn = card.ownerId === currentUser._id;

@@ -26,17 +26,36 @@ function AddPlacePopup(props) {
 
   return (
     <PopupWithForm
-        isSecondInputActive={true}
         onClose={props.onClose}
         isOpen={props.isOpen ? 'popup_opened' : ''}
         name="new-cards"
         title="Новое место"
-        placeholderName="Название"
-        placeholderDescription="Ссылка на картинку"
         submitName="Создать"
         handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        />
+        >
+        <input
+        type="text"
+        value={props.value}
+        id="profile-name"
+        name="popup__name"
+        className="popup__input popup__item_profile_name"
+        minLength="2"
+        placeholder="Название"
+        required
+        onChange={handleChange}
+      />   
+      <input
+        type="text"
+        value={props.value}
+        id="profile-job"
+        name="popup__description"
+        className="popup__input popup__item_profile_job"
+        minLength="2"
+        placeholder="Ссылка на картинку"
+        required
+        onChange={handleChange}
+      />   
+    </PopupWithForm>
     );
 }
 

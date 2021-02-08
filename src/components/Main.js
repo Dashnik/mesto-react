@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "./Card";
-import { currentUserContext, cardsContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext, CardsContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const currentUser = React.useContext(currentUserContext);
-  const cardsContextTest = React.useContext(cardsContext);
+  const currentUser = React.useContext(CurrentUserContext);
+  const cardsContextTest = React.useContext(CardsContext);
 
 
   function handleClick(cardLink, cardName) {
