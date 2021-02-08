@@ -14,7 +14,7 @@ function ImagePopup({ card, onClose }) {
           onClick={onClose}
         />
         <img className="popup__image" src={card.imageSrc} alt={card.name} />
-        <p className="popup__caption popup__caption-test">{card.name}</p>
+        <p className="popup__caption popup__caption_onBigImage">{card.name}</p>
       </div>
     </div>
   );

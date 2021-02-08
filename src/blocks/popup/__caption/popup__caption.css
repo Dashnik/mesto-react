@@ -1,3 +1,5 @@
+@import url(./_onBigImage/popup__caption_onBigImage.css);
+
 .popup__caption {
   margin: 0;
   font-size: 12px;
