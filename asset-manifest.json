@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/TD-React-Challenge-Test-1/static/css/main.ebc37aee.chunk.css",
+    "main.js": "/TD-React-Challenge-Test-1/static/js/main.c15a8246.chunk.js",
+    "main.js.map": "/TD-React-Challenge-Test-1/static/js/main.c15a8246.chunk.js.map",
+    "runtime-main.js": "/TD-React-Challenge-Test-1/static/js/runtime-main.def6d3f8.js",
+    "runtime-main.js.map": "/TD-React-Challenge-Test-1/static/js/runtime-main.def6d3f8.js.map",
+    "static/js/2.c1b84663.chunk.js": "/TD-React-Challenge-Test-1/static/js/2.c1b84663.chunk.js",
+    "static/js/2.c1b84663.chunk.js.map": "/TD-React-Challenge-Test-1/static/js/2.c1b84663.chunk.js.map",
+    "static/js/3.f6758bae.chunk.js": "/TD-React-Challenge-Test-1/static/js/3.f6758bae.chunk.js",
+    "static/js/3.f6758bae.chunk.js.map": "/TD-React-Challenge-Test-1/static/js/3.f6758bae.chunk.js.map",
+    "index.html": "/TD-React-Challenge-Test-1/index.html",
+    "static/css/main.ebc37aee.chunk.css.map": "/TD-React-Challenge-Test-1/static/css/main.ebc37aee.chunk.css.map",
+    "static/js/2.c1b84663.chunk.js.LICENSE.txt": "/TD-React-Challenge-Test-1/static/js/2.c1b84663.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/TD-React-Challenge-Test-1/static/media/profile__editingAvatar-icon.ae1a976d.svg",
+    "static/media/Trash.2af49b82.svg": "/TD-React-Challenge-Test-1/static/media/Trash.2af49b82.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.def6d3f8.js",
+    "static/js/2.c1b84663.chunk.js",
+    "static/css/main.ebc37aee.chunk.css",
+    "static/js/main.c15a8246.chunk.js"
+  ]
+}
