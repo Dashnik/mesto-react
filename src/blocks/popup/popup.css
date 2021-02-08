@@ -11,33 +11,16 @@
 @import url(./__editing_photo_container/popup__editing_photo_container.css);
 
 .popup {
-  /** display: none; transition не работает с display:none */
-
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
-  z-index: 1001;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: visibility 0s, opacity 0.5s linear;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s, linear 0.5s;
 }
-
-/* .overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  inset: 0px;
-  z-index: 1000;
-  background-color: #000a;
-}
-
-.overlay.overlay_visible {
-  display: block;
-} */

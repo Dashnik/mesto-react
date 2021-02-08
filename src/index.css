@@ -24,3 +24,10 @@
 .card_id {
   display: none;
 }
+
+
+.popup__caption-test{
+  display: flex;
+  flex-direction:row;
+  align-self: start;
+}
