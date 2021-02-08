@@ -42,7 +42,6 @@ function App() {
   React.useEffect(() => {
     Api.getProfileInfo().then((data) => {
       setCurrentUser(data);
-
     })
       .catch(error => {
         console.log(error);
@@ -100,22 +99,6 @@ function App() {
   const handleEditAvatarClick = () => {
     setAvatarPopup(!isEditAvatarPopupOpen);
   };
-
-  // const handleUpdateUser = ({ name, about }) => {
-  //   {
-  //     currentUser.name = name,
-  //       currentUser.about = about
-  //   }
-
-  //   Api.setNewProfile(currentUser)
-  //     .then(() => {
-
-  //       closeAllPopups();
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
 
   const handleUpdateUser = ({ name, about }) => {
    

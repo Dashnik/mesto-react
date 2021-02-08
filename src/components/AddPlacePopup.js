@@ -22,6 +22,9 @@ function AddPlacePopup(props) {
         name,
         link: link,
     });
+    setName('');
+    setLink('');
+    
   }
 
   return (
@@ -35,7 +38,7 @@ function AddPlacePopup(props) {
         >
         <input
         type="text"
-        value={props.value}
+        value={name}
         id="profile-name"
         name="popup__name"
         className="popup__input popup__item_profile_name"
@@ -46,7 +49,7 @@ function AddPlacePopup(props) {
       />   
       <input
         type="text"
-        value={props.value}
+        value={link}
         id="profile-job"
         name="popup__description"
         className="popup__input popup__item_profile_job"
