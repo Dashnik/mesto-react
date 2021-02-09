@@ -37,7 +37,6 @@ function EditProfilePopup(props) {
 
   return (
     <PopupWithForm
-     // isSecondInputActive={true}
       onClose={props.onClose}
       isOpen={props.isOpen ? "popup_opened" : ""}
       name="edit-user-profile"
