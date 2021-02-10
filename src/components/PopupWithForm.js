@@ -18,7 +18,7 @@ function PopupWithForm(props) {
           aria-label="закрыть попап"
           onClick={props.onClose}
         />
-        <h2 className="popup__title">{props.title}</h2>
+        <h2 className={`popup__title ${props.removeCard}`}>{props.title}</h2>
            {props.children} 
         <button type="submit" className="popup__submit popup__profile_submit" >
           {props.submitName}

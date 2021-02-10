@@ -9,19 +9,20 @@
 @import url(./__title/_removing_card/popup__title_removing_card.css);
 @import url(./__removing/popup__removing.css);
 @import url(./__editing_photo_container/popup__editing_photo_container.css);
- @import url(./__image-container/popup__image-container.css); 
+@import url(./__image-container/popup__image-container.css); 
 
 .popup {
+  /** transition не работает с display*/
   position: fixed;
   left: 0px;
   top: 0px;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
-  display: none;
+  /* display: none; */
   /* justify-content: center; */
   /* align-items: center; */
-  transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear; 
   visibility: hidden;
   opacity: 0;
 }

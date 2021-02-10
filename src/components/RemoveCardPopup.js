@@ -6,7 +6,7 @@ function RemoveCardPopup(props) {
     function handleSubmit(e) {
         e.preventDefault();
         
-        props.onRemoveCard({cardId})
+        props.onRemoveCard(`${props.cardId}`)
     }
 
     return (
@@ -15,6 +15,7 @@ function RemoveCardPopup(props) {
             isOpen={props.isOpen ? "popup_opened" : ""}
             name="removing_card"
             title="Вы уверены?"
+            removeCard='popup__title-remove'
             submitName="Да"
             handleSubmit={handleSubmit}
         >  

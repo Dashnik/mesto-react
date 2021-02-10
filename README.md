@@ -36,7 +36,7 @@ HTML, CSS(Flex,Grid,BEM), Javascript, react
 
 ### Нужно подправить
 
-* Подправить расположение тайтла в попапах по левому краю!
+* --
 
 [ссылке]: <https://dashnik.github.io/mesto-react/> 
 [места]: <https://dashnik.github.io/mesto/index.html> 

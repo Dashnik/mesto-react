@@ -24,6 +24,8 @@ function App() {
 
   const [currentUser, setCurrentUser] = React.useState('');
   const [cards, setCards] = React.useState([]);
+  const [currentRemoveCard, setCurrentRemoveCard] = React.useState([]);  
+
 
   React.useEffect(() => {
     Api.getInitialCards()
@@ -82,8 +84,9 @@ function App() {
   }
 
   function handleCardDelete(card) {
-   // console.log(card);
-    handleRemoveCardClick();
+   
+    setIsRemoveCardPopupOpen(!isRemoveCardPopupOpen);
+    setCurrentRemoveCard(card._id);
     // Api.deleteCard(card._id)
     //   .then(() => {
     //     const newCards = cards.filter((r) => (r._id === card._id ? "" : r));
@@ -149,6 +152,15 @@ function App() {
 
 const handleRemoveCard = (cardId) => {
   console.log(cardId);
+   Api.deleteCard(cardId)
+      .then(() => {
+        const newCards = cards.filter((r) => (r._id === cardId ? "" : r));
+        setCards(newCards);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      closeAllPopups();    
 }
 
   const closeAllPopups = () => {
@@ -194,7 +206,8 @@ const handleRemoveCard = (cardId) => {
       <RemoveCardPopup
         onClose={closeAllPopups}
         isOpen={isRemoveCardPopupOpen}
-        onRemoveCard={handleRemoveCard}
+        cardId={currentRemoveCard}
+         onRemoveCard={handleRemoveCard}
       />
       <ImagePopup onClose={closeAllPopups} card={selectedCard} />
     </div>

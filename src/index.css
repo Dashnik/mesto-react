@@ -24,3 +24,7 @@
 /* .card_id {
   display: none;
 } */
+
+.popup__title-remove{
+  margin-bottom: 0;
+}
