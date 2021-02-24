@@ -25,6 +25,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState('');
   const [cards, setCards] = React.useState([]);
   const [currentRemoveCard, setCurrentRemoveCard] = React.useState([]);  
+  const [isRender, setIsRender] = React.useState(false);
 
 
   React.useEffect(() => {
@@ -87,14 +88,6 @@ function App() {
    
     setIsRemoveCardPopupOpen(!isRemoveCardPopupOpen);
     setCurrentRemoveCard(card._id);
-    // Api.deleteCard(card._id)
-    //   .then(() => {
-    //     const newCards = cards.filter((r) => (r._id === card._id ? "" : r));
-    //     setCards(newCards);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }
 
   const handleEditProfileClick = () => {
@@ -109,9 +102,10 @@ function App() {
     setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
   };
 
-  const handleRemoveCardClick = () =>{
-    setIsRemoveCardPopupOpen(!isRemoveCardPopupOpen);
-  }
+  const handleRendering = () => {
+    setIsRender(!isRender);
+    console.log(isRender);
+  };
 
   const handleUpdateUser = ({ name, about }) => {
    
@@ -128,7 +122,13 @@ function App() {
 
   const handleUpdateAvatar = (link) => {
 
+    //handleRendering();
+
+    ///console.log('hi');
     Api.setUserAvatar(link).then((data) => {
+
+    
+
       setCurrentUser(data);
       closeAllPopups();
     }
@@ -136,6 +136,8 @@ function App() {
       .catch(error => {
         console.log(error);
       })
+
+      //setIsRender(false);
   }
 
   const handleAddPlaceSubmit = (newCard) => {
@@ -151,7 +153,7 @@ function App() {
   }
 
 const handleRemoveCard = (cardId) => {
-  console.log(cardId);
+
    Api.deleteCard(cardId)
       .then(() => {
         const newCards = cards.filter((r) => (r._id === cardId ? "" : r));
@@ -202,6 +204,7 @@ const handleRemoveCard = (cardId) => {
         onClose={closeAllPopups}
         isOpen={isEditAvatarPopupOpen}
         onUpdateAvatar={handleUpdateAvatar}
+        isRender={isRender}
       />
       <RemoveCardPopup
         onClose={closeAllPopups}

@@ -13,6 +13,7 @@ function EditAvatarPopup(props) {
         props.onUpdateAvatar({
             avatar: value /* Значение инпута, полученное с помощью рефа */,
         });
+      
     }
 
     return (
@@ -21,7 +22,8 @@ function EditAvatarPopup(props) {
             isOpen={props.isOpen ? "popup_opened" : ""}
             name="editing_photo_profile"
             title="Обновить аватар"
-            submitName="Сохранить"
+            // submitName="Сохранить"
+            submitName={props.isRender ? 'Сохранение...' : 'Сохранить'}
             handleSubmit={handleSubmit}
             inputField={inputField}
         >

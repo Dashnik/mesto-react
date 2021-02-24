@@ -34,9 +34,10 @@ HTML, CSS(Flex,Grid,BEM), Javascript, react
 *  Тексты написаны бесплатным шрифтом [Inter] от дизайнеров Фигмы.
 
 
-### Нужно подправить
+### Нужно добавить
 
-* --
+* Валидацию для инпутов
+* значок рендеринга при нажатие на сабмит для всех форм.
 
 [ссылке]: <https://dashnik.github.io/mesto-react/> 
 [места]: <https://dashnik.github.io/mesto/index.html> 
